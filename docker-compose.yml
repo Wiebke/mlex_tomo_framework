@@ -39,7 +39,7 @@ services:
       - TILED_DB_PW=${TILED_DB_PW}
       - TILED_DB_NAME=${TILED_DB_NAME}
       - TILED_DB_SERVER=${TILED_DB_SERVER}
-      - TILED_SINGLE_USER_API_KEY=${TILED_SINGLE_USER_API_KEY}
+      - TILED_SINGLE_USER_API_KEY=${TILED_API_KEY}
     volumes:
       - ./tiled/deploy:/deploy
       - ./data/tiled_storage:/tiled_storage
@@ -90,10 +90,12 @@ services:
       - MASK_TILED_API_KEY=${TILED_API_KEY}
       - SEG_TILED_URI=http://tiled:8000/
       - SEG_TILED_API_KEY=${TILED_API_KEY}
+      - PREFECT_API_URL=http://prefect:4200/api
       - USER_NAME=${MLEX_SEGM_USER}
       - USER_PASSWORD=${MLEX_SEGM_PW}
       - RESULTS_DIR=${RESULTS_DIR}
-      - PREFECT_API_URL=http://prefect:4200/api
+      - TRAIN_SCRIPT_PATH=${TRAIN_SCRIPT_PATH}
+      - SEGMENT_SCRIPT_PATH=${SEGMENT_SCRIPT_PATH}
       - FLOW_NAME=${FLOW_NAME}
       - TIMEZONE=${TIMEZONE}
     ports:
