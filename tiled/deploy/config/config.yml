@@ -1,7 +1,7 @@
 authentication:
   # The default is false. Set to true to enable any HTTP client that can
   # connect to _read_. An API key is still required to write.
-  allow_anonymous_access: true
+  allow_anonymous_access: false
   single_user_api_key: ${TILED_SINGLE_USER_API_KEY}
 trees:
   - path: /
@@ -20,7 +20,7 @@ trees:
       # separately.
       init_if_not_exists: true
 uvicorn:
-  host: 0.0.0.0
+  host: 127.0.0.1
   port: 8000
 object_cache:
   available_bytes: 0
