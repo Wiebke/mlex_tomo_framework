@@ -1,5 +1,6 @@
-# this file provides an example dev override for users attempting this 
-# using podman and podman-compose on Mac. If so, rename this file to:
+# This file provides an example dev override for users attempting this 
+# using podman and podman-compose on Mac, and/or working with data at rest
+# If so, rename this file to:
 #     docker-compose.override.yaml
 version: '3'
 services:
@@ -13,14 +14,16 @@ services:
     # ports:
     #   - "127.0.0.1:5432:5432"
   
-  activemq:
-    image: rmohr/activemq:5.15.9
-    ports:
-      - "127.0.0.1:8161:8161" # Admin console
-      - "127.0.0.1:61616:61616" # OpenWire
-      - "127.0.0.1:61613:61613" # STOMP
+  # If using activemq for ingestion
+  # activemq:
+  #   image: rmohr/activemq:5.15.9
+  #   ports:
+  #      - "127.0.0.1:8161:8161" # Admin console
+  #      - "127.0.0.1:61616:61616" # OpenWire
+  #      - "127.0.0.1:61613:61613" # STOMP
+
+  # If using rabbitmq for ingestion
   # rabbitmq:
-  #   # command: sleep 888888
   #   image: rabbitmq:3-management-alpine
   #   # userns_mode: keep-id:uid=100,gid=100 # tell podman to use the rabbitmq user
   #   container_name: 'rabbitmq'
@@ -30,6 +33,24 @@ services:
   #   volumes:
   #       - ./rabbitmq/data/:/var/lib/rabbitmq/
   #       - ./rabbitmq/log/:/var/log/rabbitmq
+  #   networks:
+  #     mle_net:
+
+  # Can be useful for testing for data at rest 
+  # tiled_init:
+  #   image: ghcr.io/bluesky/tiled:v0.1.0a114
+  #   # tiled catalog init "postgresql+asyncpg://${TILED_DB_USER}:${TILED_DB_PW}@tiled_db:5432/${TILED_DB_NAME}"; 
+  #   command: tiled catalog register "postgresql+asyncpg://${TILED_DB_USER}:${TILED_DB_PW}@${TILED_DB_SERVER}:5432/${TILED_DB_NAME}" /tiled_storage --verbose
+  #   environment:
+  #     - TILED_DB_USER=${TILED_DB_USER}
+  #     - TILED_DB_PW=${TILED_DB_PW}
+  #     - TILED_DB_NAME=${TILED_DB_NAME}
+  #     - TILED_DB_SERVER=${TILED_DB_SERVER}
+  #   volumes:
+  #     - ./tiled/deploy:/deploy
+  #     - ./data/tiled_storage:/tiled_storage
+  #   depends_on:
+  #     - tiled_db
   #   networks:
   #     mle_net:
 
