@@ -1,10 +1,13 @@
 data/prefect_db
 data/tiled_db
 data/tiled_storage/writable
+data/tiled_storage/recons
+data/dash_storage
+data/model_storage
+rabbitmq
 .env
-.DS_Store
-rabbitmq/
 
+.DS_Store
 .vscode/
 
 mlex_dlsia_segmentation_prototype/
@@ -13,4 +16,3 @@ mlex_tiled_ingest/
 mlex_highres_segmentation/
 
 docker-compose.override.yaml
-/mlex_tiled_afm
