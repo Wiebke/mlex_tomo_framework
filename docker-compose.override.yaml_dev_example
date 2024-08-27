@@ -2,7 +2,6 @@
 # using podman and podman-compose on Mac, and/or working with data at rest
 # If so, rename this file to:
 #     docker-compose.override.yaml
-version: '3'
 services:
   prefect_db:
     userns_mode: keep-id:uid=70,gid=70 # tell podman to use the postgres user
