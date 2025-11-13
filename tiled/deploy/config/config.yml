@@ -26,3 +26,7 @@ object_cache:
   available_bytes: 0
 metrics: 
   prometheus: false
+
+allow_origins:
+  - http://127.0.0.1:8075
+  - http://localhost:8075
